@@ -9,23 +9,32 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
     console.log(`API Gateway RequestId: ${apiRequestId} - Lambda RequestId: ${lambdaRequestId}`)
 
     if (event.resource === "/products"){
-        if (method === 'GET'){
-            console.log('GET')
+        console.log('POST /products')
+
+        return {
+            statusCode: 201,
+            body: "POST /products"
+        }
+
+    } else if (event.resource === "/products/{id}") {
+
+        const productId = event.pathParameters!.id as string
+
+        if (method === "PUT"){
+            console.log(`PUT /products/${productId}`)
 
             return {
                 statusCode: 200,
-                body: JSON.stringify({
-                    message: "GET Products OK"
-                })
+                body: `PUT /products/${productId}`
             }
-        }
-    } else if (event.resource === "/products/{id}") {
-        const productId = event.pathParameters!.id as string
-        console.log(`GET /products/${productId}`)
-        
-        return {
-            statusCode: 200,
-            body: `GET /products/${productId}`
+
+        } else if (method === "DELETE"){
+            console.log(`DELETE /products/${productId}`)
+
+            return {
+                statusCode: 200,
+                body: `DELETE /products/${productId}`
+            }
         }
     }
 
@@ -35,5 +44,4 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
             message: "Bad Request, verify the endpoint"
         })
     }
-    
 }
