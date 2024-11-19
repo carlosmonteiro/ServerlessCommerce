@@ -6,9 +6,12 @@ import { EcommerceApiStack } from '../lib/ecommerceAPI-stack';
 
 const app = new cdk.App();
 
+const account = app.node.tryGetContext("account");
+const region = app.node.tryGetContext("region");
+
 const env: cdk.Environment = {
-  account: "USE-ACCOUNT-NUMBER",
-  region: "us-east-1"
+  account,
+  region,
 }
 
 const globalTags  = {
