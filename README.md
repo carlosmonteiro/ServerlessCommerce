@@ -23,3 +23,9 @@ This project aims to provide an easy-to-deploy, scalable, and cost-effective e-c
 - **AWS CDK**: Install AWS CDK globally using npm:
   ```bash
   npm install -g aws-cdk
+
+## Project Structure
+
+- **/lib**: Contains AWS CDK stacks that define AWS resources.
+- **/src**: Source code for Lambda functions written in TypeScript.
+- **/bin**: Entry point for the CDK to deploy the application.
