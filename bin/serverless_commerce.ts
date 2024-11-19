@@ -6,13 +6,13 @@ import { EcommerceApiStack } from '../lib/ecommerceAPI-stack';
 
 const app = new cdk.App();
 
-const account = app.node.tryGetContext("account");
-const region = app.node.tryGetContext("region");
+const account = process.env.CDK_ACCOUNT;
+const region = process.env.CDK_REGION;
 
 const env: cdk.Environment = {
-  account,
-  region,
-}
+  account: account || 'default',
+  region: region || 'default',
+};
 
 const globalTags  = {
   cost: "Serverless Commerce",
