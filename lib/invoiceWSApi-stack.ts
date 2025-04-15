@@ -1,6 +1,6 @@
 import * as cdk from "aws-cdk-lib"
-import * as apigatewayv2 from "@aws-cdk/aws-apigatewayv2-alpha"
-import * as apigatewayv2_integrations from "@aws-cdk/aws-apigatewayv2-integrations-alpha"
+import * as apigatewayv2 from "aws-cdk-lib/aws-apigatewayv2"
+import * as apigatewayv2_integrations from "aws-cdk-lib/aws-apigatewayv2-integrations"
 import * as lambdaNodeJS from "aws-cdk-lib/aws-lambda-nodejs"
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb"
 import * as lambda from "aws-cdk-lib/aws-lambda"
