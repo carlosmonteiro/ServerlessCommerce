@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2018",
     "module": "commonjs",
     "lib": [
-      "es2020",
-      "dom"
+      "es2018"
     ],
     "declaration": true,
     "strict": true,
@@ -22,7 +21,41 @@
     "strictPropertyInitialization": false,
     "typeRoots": [
       "./node_modules/@types"
-    ]
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "/opt/nodejs/productsLayer":[
+        "src/products/layers/productsLayer/nodejs/productRepository"
+      ],
+      "/opt/nodejs/productEventsLayer":[
+        "src/products/layers/productEventsLayer/nodejs/productEvent"
+      ],
+      "/opt/nodejs/ordersLayer":[
+        "src/orders/layers/ordersLayer/nodejs/orderRepository"
+      ],
+      "/opt/nodejs/ordersApiLayer":[
+        "src/orders/layers/ordersApiLayer/nodejs/orderApi"
+      ],
+      "/opt/nodejs/orderEventsLayer":[
+        "src/orders/layers/orderEventsLayer/nodejs/orderEvent"
+      ],
+      "/opt/nodejs/orderEventsRepositoryLayer":[
+        "src/orders/layers/orderEventsRepositoryLayer/nodejs/orderEventRepository"
+      ],
+      "/opt/nodejs/invoiceTransaction":[
+        "src/invoices/layers/invoiceTransaction/nodejs/invoiceTransaction"
+      ],    
+      "/opt/nodejs/invoiceWSConnection":[
+        "src/invoices/layers/invoiceWSConnection/nodejs/invoiceWSConnection"
+      ],
+      "/opt/nodejs/invoiceRepository":[
+        "src/invoices/layers/invoiceRepository/nodejs/invoiceRepository"
+      ],    
+      "/opt/nodejs/authUserInfo":[
+        "src/auth/layers/authUserInfo/nodejs/authUserInfo"
+      ]    
+
+    }
   },
   "exclude": [
     "node_modules",
