@@ -57,7 +57,7 @@ export class ProductsAppStack extends cdk.Stack {
       const productEventsHandler = new lambdaNodeJS.NodejsFunction(this, 
          "ProductsEventsFunction", {
             functionName: "ProductsEventsFunction",
-            entry: "lambda/products/productEventsFunction.ts",
+            entry: "src/products/productEventsFunction.ts",
             handler: "handler",
             //CHANGE
             memorySize: 512,
@@ -93,7 +93,7 @@ export class ProductsAppStack extends cdk.Stack {
       this.productsFetchHandler = new lambdaNodeJS.NodejsFunction(this, 
          "ProductsFetchFunction", {
             functionName: "ProductsFetchFunction",
-            entry: "lambda/products/productsFetchFunction.ts",
+            entry: "src/products/productsFetchFunction.ts",
             handler: "handler",
             //CHANGE
             memorySize: 512,
@@ -116,7 +116,7 @@ export class ProductsAppStack extends cdk.Stack {
       this.productsAdminHandler = new lambdaNodeJS.NodejsFunction(this, 
          "ProductsAdminFunction", {
             functionName: "ProductsAdminFunction",
-            entry: "lambda/products/productsAdminFunction.ts",
+            entry: "src/products/productsAdminFunction.ts",
             handler: "handler",
             //CHANGE
             memorySize: 512,

@@ -15,19 +15,19 @@ import { AuthLayersStack } from '../lib/authLayers-stack';
 const app = new cdk.App();
 
 const env: cdk.Environment = {
-  account: "946835467386",
-  region: "us-west-1"
+  account: "327498361889",
+  region: "us-east-1"
 }
 
 const tags = {
   cost: "ECommerce",
-  team: "SiecolaCode"
+  team: "Serverless Team"
 }
 
 const auditEventBus = new AuditEventBusStack(app, "AuditEvents", {
   tags: {
     cost: 'Audit',
-    team: 'SiecolaCode'
+    team: 'Serverless Team'
   },
   env: env
 })
@@ -88,7 +88,7 @@ eCommerceApiStack.addDependency(ordersAppStack)
 const invoicesAppLayersStack = new InvoicesAppLayersStack(app, "InvoicesAppLayer", {
   tags: {
     cost: "InvoiceApp",
-    team: "SiecolaCode"
+    team: "Serverless Team"
   },
   env: env
 })
@@ -98,7 +98,7 @@ const invoiceWSApiStack = new InvoiceWSApiStack(app, "InvoiceApi", {
   auditBus: auditEventBus.bus,
   tags: {
     cost: "InvoiceApp",
-    team: "SiecolaCode"
+    team: "Serverless Team"
   },
   env: env
 })

@@ -8,7 +8,7 @@ export class AuthLayersStack extends cdk.Stack {
       super(scope, id, props)
 
       const authUserInfoLayer = new lambda.LayerVersion(this, "AuthUserInfoLayer", {
-         code: lambda.Code.fromAsset('lambda/auth/layers/authUserInfo'),
+         code: lambda.Code.fromAsset('src/auth/layers/authUserInfo'),
          //CHANGE
          compatibleRuntimes: [ lambda.Runtime.NODEJS_20_X],
          layerVersionName: "AuthUserInfo",

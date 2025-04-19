@@ -100,7 +100,7 @@ export class OrdersAppStack extends cdk.Stack {
 
       this.ordersHandler = new lambdaNodeJS.NodejsFunction(this, "OrdersFunction", {
          functionName: "OrdersFunction",
-         entry: "lambda/orders/ordersFunction.ts",
+         entry: "src/orders/ordersFunction.ts",
          handler: "handler",
          //CHANGE
          memorySize: 512,
@@ -162,7 +162,7 @@ export class OrdersAppStack extends cdk.Stack {
 
       const orderEventsHandler = new lambdaNodeJS.NodejsFunction(this, "OrderEventsFunction", {
          functionName: "OrderEventsFunction",
-         entry: "lambda/orders/orderEventsFunction.ts",
+         entry: "src/orders/orderEventsFunction.ts",
          handler: "handler",
          //CHANGE
          memorySize: 512,
@@ -196,7 +196,7 @@ export class OrdersAppStack extends cdk.Stack {
 
       const billingHandler = new lambdaNodeJS.NodejsFunction(this, "BillingFunction", {
          functionName: "BillingFunction",
-         entry: "lambda/orders/billingFunction.ts",
+         entry: "src/orders/billingFunction.ts",
          handler: "handler",
          //CHANGE
          memorySize: 512,
@@ -240,7 +240,7 @@ export class OrdersAppStack extends cdk.Stack {
 
       const orderEmailsHandler = new lambdaNodeJS.NodejsFunction(this, "OrderEmailsFunction", {
          functionName: "OrderEmailsFunction",
-         entry: "lambda/orders/orderEmailsFunction.ts",
+         entry: "src/orders/orderEmailsFunction.ts",
          handler: "handler",
          //CHANGE
          memorySize: 512,
@@ -270,7 +270,7 @@ export class OrdersAppStack extends cdk.Stack {
 
       this.orderEventsFetchHandler = new lambdaNodeJS.NodejsFunction(this, "OrderEventsFetchFunction", {
          functionName: "OrderEventsFetchFunction",
-         entry: "lambda/orders/orderEventsFetchFunction.ts",
+         entry: "src/orders/orderEventsFetchFunction.ts",
          handler: "handler",
          //CHANGE
          memorySize: 512,
