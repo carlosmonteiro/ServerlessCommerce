@@ -44,7 +44,7 @@ function sendOrderEmail(body: SNSMessage) {
             Data: "Recebemos seu pedido!"
          }
       },
-      Source: "siecolaaws@gmail.com",
-      ReplyToAddresses: ['siecolaaws@gmail.com']
+      Source: process.env.SES_FROM_EMAIL || "noreply@yourdomain.com",
+      ReplyToAddresses: [process.env.SES_REPLY_EMAIL || "support@yourdomain.com"]
    }).promise()
 }
