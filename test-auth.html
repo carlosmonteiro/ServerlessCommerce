@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Authentication</title>
+</head>
+<body>
+    <h1>ServerlessCommerce Authentication Test</h1>
+    
+    <div id="login-section">
+        <h2>Step 1: Login to get access token</h2>
+        <p>Click the button below to authenticate with Cognito:</p>
+        <button onclick="login()">Login with Cognito</button>
+    </div>
+    
+    <div id="token-section" style="display:none;">
+        <h2>Step 2: Access Token</h2>
+        <p>Your access token:</p>
+        <textarea id="access-token" rows="10" cols="80" readonly></textarea>
+        <br><br>
+        <button onclick="testAPI()">Test Products API</button>
+    </div>
+    
+    <div id="result-section" style="display:none;">
+        <h2>Step 3: API Response</h2>
+        <pre id="api-result"></pre>
+    </div>
+
+    <script>
+        const COGNITO_DOMAIN = 'pcs2-customer-service-1752868629472';
+        const CLIENT_ID = '14qeip4cvcrlds754flbgpbht3';
+        const REDIRECT_URI = 'https://example.com';
+        const API_URL = 'https://89zvhwpmt1.execute-api.us-east-1.amazonaws.com/prod/products';
+        
+        function login() {
+            const authUrl = `https://${COGNITO_DOMAIN}.auth.us-east-1.amazoncognito.com/oauth2/authorize?` +
+                `client_id=${CLIENT_ID}&` +
+                `response_type=token&` +
+                `scope=customer/web&` +
+                `redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+            
+            window.location.href = authUrl;
+        }
+        
+        function getTokenFromURL() {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            return params.get('access_token');
+        }
+        
+        function testAPI() {
+            const token = document.getElementById('access-token').value;
+            
+            fetch(API_URL, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('api-result').textContent = JSON.stringify(data, null, 2);
+                document.getElementById('result-section').style.display = 'block';
+            })
+            .catch(error => {
+                document.getElementById('api-result').textContent = 'Error: ' + error.message;
+                document.getElementById('result-section').style.display = 'block';
+            });
+        }
+        
+        // Check if we have a token in the URL (after redirect)
+        window.onload = function() {
+            const token = getTokenFromURL();
+            if (token) {
+                document.getElementById('access-token').value = token;
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('token-section').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
