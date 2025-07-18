@@ -157,7 +157,9 @@ export class OrdersAppStack extends cdk.Stack {
          displayName: "Order alarms topic",
          topicName: "order-alarms"
       })
-      orderAlarmsTopic.addSubscription(new subs.EmailSubscription("siecola@gmail.com"))
+      // Add email subscription from environment variable
+      const alertEmail = process.env.ALERT_EMAIL || "admin@yourdomain.com";
+      orderAlarmsTopic.addSubscription(new subs.EmailSubscription(alertEmail))
       productNotFoundAlarm.addAlarmAction(new cw_actions.SnsAction(orderAlarmsTopic))
 
       const orderEventsHandler = new lambdaNodeJS.NodejsFunction(this, "OrderEventsFunction", {

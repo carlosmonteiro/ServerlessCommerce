@@ -28,6 +28,8 @@
 		"aws-cdk-lib": "^2.190.0",
 		"aws-xray-sdk": "^3.5.3",
 		"constructs": "^10.0.0",
-		"source-map-support": "^0.5.21"
+		"source-map-support": "^0.5.21",
+		"@aws-sdk/client-dynamodb": "^3.450.0",
+		"@aws-sdk/lib-dynamodb": "^3.450.0"
 	}
 }

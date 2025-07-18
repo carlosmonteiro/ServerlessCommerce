@@ -15,8 +15,8 @@ import { AuthLayersStack } from '../lib/authLayers-stack';
 const app = new cdk.App();
 
 const env: cdk.Environment = {
-  account: "327498361889",
-  region: "us-east-1"
+  account: process.env.CDK_DEFAULT_ACCOUNT,
+  region: process.env.CDK_DEFAULT_REGION || "us-east-1"
 }
 
 const tags = {

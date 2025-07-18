@@ -202,13 +202,13 @@ private createCognitoAuth() {
 
       this.customerPool.addDomain("CustomerDomain", {
          cognitoDomain: {
-            domainPrefix: "pcs2-customer-service"
+            domainPrefix: `pcs2-customer-service-${Date.now()}`
          }
       })
 
       this.adminPool.addDomain("AdminDomain", {
          cognitoDomain: {
-            domainPrefix: "pcs2-admin-service"
+            domainPrefix: `pcs2-admin-service-${Date.now()}`
          }
       })
 
@@ -309,8 +309,8 @@ private createOrdersService(props: ECommerceApiStackProps, api: apigateway.RestA
       const ordersResource = api.root.addResource('orders')
 
       //GET /orders
-      //GET /orders?email=matilde@siecola.com.br
-      //GET /orders?email=matilde@siecola.com.br&orderId=123
+      //GET /orders?email=user@example.com
+      //GET /orders?email=user@example.com&orderId=123
       ordersResource.addMethod("GET", ordersIntegration, {
          authorizer: this.ordersAuthorizer,
          authorizationType: apigateway.AuthorizationType.COGNITO,
@@ -323,7 +323,7 @@ private createOrdersService(props: ECommerceApiStackProps, api: apigateway.RestA
          validateRequestParameters: true,
       })
 
-      //DELETE /orders?email=matilde@siecola.com.br&orderId=123
+      //DELETE /orders?email=user@example.com&orderId=123
       ordersResource.addMethod("DELETE", ordersIntegration, {
          requestParameters: {
             'method.request.querystring.email': true,
@@ -387,8 +387,8 @@ private createOrdersService(props: ECommerceApiStackProps, api: apigateway.RestA
 
       const orderEventsFunctionIntegration = new apigateway.LambdaIntegration(props.orderEventsFetchHandler)
 
-      //GET /orders/events?email=matilde@siecola.com.br
-      //GET /orders/events?email=matilde@siecola.com.br&eventType=ORDER_CREATED
+      //GET /orders/events?email=user@example.com
+      //GET /orders/events?email=user@example.com&eventType=ORDER_CREATED
       orderEventsResource.addMethod('GET', orderEventsFunctionIntegration, {
          requestParameters: {
             'method.request.querystring.email': true,
